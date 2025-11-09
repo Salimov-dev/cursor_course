@@ -1,0 +1,35 @@
+{
+  "common": {
+    "loading": "Йөкләү...",
+    "error": "Хата",
+    "success": "Уңышлы",
+    "save": "Саклау",
+    "cancel": "Кире кагу",
+    "delete": "Бетерү",
+    "edit": "Үзгәртү",
+    "add": "Өстәү",
+    "search": "Эзләү",
+    "filter": "Фильтр",
+    "close": "Ябу",
+    "confirm": "Раслау",
+    "yes": "Әйе",
+    "no": "Юк",
+    "back": "Кайту",
+    "next": "Киләсе",
+    "previous": "Алдагы",
+    "submit": "Җибәрү",
+    "reset": "Кире кайтару",
+    "required": "Мәҗбүри кыр",
+    "optional": "Ихтимал кыр",
+    "name": "Исем",
+    "description": "Тасвирлама",
+    "actions": "Гамәлләр",
+    "created": "Яралды",
+    "updated": "Яңартылды",
+    "hello": "Сәлам",
+    "login": "Керү",
+    "registration": "Теркәлү",
+    "signOut": "Чыгу"
+  }
+}
+

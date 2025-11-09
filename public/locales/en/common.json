@@ -1,0 +1,35 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "add": "Add",
+    "search": "Search",
+    "filter": "Filter",
+    "close": "Close",
+    "confirm": "Confirm",
+    "yes": "Yes",
+    "no": "No",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "submit": "Submit",
+    "reset": "Reset",
+    "required": "Required field",
+    "optional": "Optional field",
+    "name": "Name",
+    "description": "Description",
+    "actions": "Actions",
+    "created": "Created",
+    "updated": "Updated",
+    "hello": "Hello",
+    "login": "Login",
+    "registration": "Registration",
+    "signOut": "Sign Out"
+  }
+}
+

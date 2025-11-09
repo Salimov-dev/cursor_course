@@ -9,6 +9,9 @@ import { SessionProvider } from "next-auth/react";
 import { auth } from "@/auth/auth";
 import AppLoader from "@/hoc/app-loader";
 import Title from "@/components/UI/layout/title";
+import { LanguageUpdater } from "@/components/common/language-updater";
+import { i18nConfig } from "@/config/i18n.config";
+import Footer from "@/components/common/footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,11 +36,12 @@ export default async function RootLayout({
   const session = await auth();
 
   return (
-    <html lang="en">
+    <html lang={i18nConfig.defaultLanguage}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Providers>
+          <LanguageUpdater />
           <SessionProvider session={session}>
             <AppLoader>
               <div className="flex min-h-screen flex-col justify-between">
@@ -51,12 +55,7 @@ export default async function RootLayout({
                   </main>
                 </div>
 
-                <footer
-                  className={`w-full flex items-center justify-center py-3`}
-                  style={{ height: layoutConfig.footerHeight }}
-                >
-                  <p>{siteConfig.description}</p>
-                </footer>
+                <Footer />
               </div>
             </AppLoader>
           </SessionProvider>

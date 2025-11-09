@@ -17,6 +17,8 @@ import LoginModal from "../modals/login.modal";
 import { useState } from "react";
 import { signOutFunc } from "@/actions/sign-out";
 import { useAuthStore } from "@/store/auth.store";
+import { LanguageSwitcher } from "@/components/common/language-switcher";
+import { useTranslation } from "react-i18next";
 
 export const Logo = () => {
   return (
@@ -32,6 +34,7 @@ export const Logo = () => {
 
 export default function Header() {
   const pathname = usePathname();
+  const { t } = useTranslation();
 
   const { isAuth, session, status, setAuthState } = useAuthStore();
 
@@ -49,6 +52,12 @@ export default function Header() {
   };
 
   const getNavItems = () => {
+    const navLabels: Record<string, string> = {
+      "/": t("navigation:recipes"),
+      "/ingredients": t("navigation:ingredients"),
+      "/about": t("navigation:about")
+    };
+
     return siteConfig.navItems
       .filter((item) => {
         if (item.href === "/ingredients") {
@@ -58,6 +67,7 @@ export default function Header() {
       })
       .map((item) => {
         const isActive = pathname === item.href;
+        const label = navLabels[item.href] || item.label;
 
         return (
           <NavbarItem key={item.href}>
@@ -72,7 +82,7 @@ export default function Header() {
               transition-border
               duration-200`}
             >
-              {item.label}
+              {label}
             </Link>
           </NavbarItem>
         );
@@ -84,7 +94,7 @@ export default function Header() {
       <NavbarBrand>
         <Link href="/" className="flex gap-1">
           <Logo />
-          <p className="font-bold text-inherit">{siteConfig.title}</p>
+          <p className="font-bold text-inherit">{t("branding:title")}</p>
         </Link>
       </NavbarBrand>
 
@@ -93,10 +103,18 @@ export default function Header() {
       </NavbarContent>
 
       <NavbarContent justify="end">
-        {isAuth && <p>Привет, {session?.user?.email}!</p>}
+        <NavbarItem>
+          <LanguageSwitcher />
+        </NavbarItem>
+
+        {isAuth && (
+          <p>
+            {t("common:hello")}, {session?.user?.email}!
+          </p>
+        )}
 
         {status === "loading" ? (
-          <p>Загрузка...</p>
+          <p>{t("common:loading")}</p>
         ) : !isAuth ? (
           <>
             <NavbarItem>
@@ -107,7 +125,7 @@ export default function Header() {
                 variant="flat"
                 onPress={() => setIsLoginOpen(true)}
               >
-                Логин
+                {t("common:login")}
               </Button>
             </NavbarItem>
             <NavbarItem>
@@ -118,7 +136,7 @@ export default function Header() {
                 variant="flat"
                 onPress={() => setIsRegistrationOpen(true)}
               >
-                Регистрация
+                {t("common:registration")}
               </Button>
             </NavbarItem>
           </>
@@ -131,7 +149,7 @@ export default function Header() {
               variant="flat"
               onPress={handleSignOut}
             >
-              Выйти
+              {t("common:signOut")}
             </Button>
           </NavbarItem>
         )}
